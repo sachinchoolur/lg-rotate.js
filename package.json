@@ -56,7 +56,7 @@
     "build": "npm run lint && npm run build-debug && npm run build-min",
     "build-debug": "browserify src/lg-rotate.js -s LgRotate -t [babelify] -p [bannerify --file .banner ] -o dist/lg-rotate.js",
     "build-min": "uglifyjs dist/lg-rotate.js --comments '/@license/' -m screw_ie8=true -c screw_ie8=true,unused=false -o dist/lg-rotate.min.js",
-    "build-watch": "watchify src/lg-rotate.js -s LgRotate -t [babelify] -o /Users/sachin/workspace/lightgaller-js/gh-pages/lightgallery.js/lightgallery/js/lg-rotate.js -v",
+    "build-watch": "watchify src/lg-rotate.js -s LgRotate -t [babelify] -o dist/lg-rotate.js -v",
     "dev": "watchify src/lg-rotate.js -s LgRotate -t [babelify] -o ../lightgallery.js/lightgallery/js/lg-rotate.js -v",
     "lint": "jshint src"
   }
