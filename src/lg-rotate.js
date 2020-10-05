@@ -86,13 +86,47 @@ Rotate.prototype.rotateRight = function () {
     this.applyStyles();
 };
 
+Rotate.prototype.getCurrentRotation = function (el) {
+    if (!el) {
+        return 0;
+    }
+    const st = window.getComputedStyle(el, null);
+    const tm = st.getPropertyValue('-webkit-transform') ||
+        st.getPropertyValue('-moz-transform') ||
+        st.getPropertyValue('-ms-transform') ||
+        st.getPropertyValue('-o-transform') ||
+        st.getPropertyValue('transform') ||
+        'none';
+    if (tm !== 'none') {
+        const values = tm.split('(')[1].split(')')[0].split(',');
+        if (values) {
+            const angle = Math.round(Math.atan2(values[1], values[0]) * (180 / Math.PI));
+            return (angle < 0 ? angle + 360 : angle);
+        }
+    }
+    return 0;
+};
+
 Rotate.prototype.flipHorizontal = function () {
-    this.rotateValuesList[this.core.index].flipHorizontal *= -1;
+    const rotateEl = this.core.___slide[this.core.index].querySelector('.lg-img-rotate');
+    const currentRotation = this.getCurrentRotation(rotateEl);
+    let rotateAxis = 'flipHorizontal';
+    if (currentRotation === 90 || currentRotation === 270) {
+        rotateAxis = 'flipVertical';
+    }
+    this.rotateValuesList[this.core.index][rotateAxis] *= -1;
     this.applyStyles();
 };
 
 Rotate.prototype.flipVertical = function () {
-    this.rotateValuesList[this.core.index].flipVertical *= -1;
+    const rotateEl = this.core.___slide[this.core.index].querySelector('.lg-img-rotate');
+    const currentRotation = this.getCurrentRotation(rotateEl);
+    let rotateAxis = 'flipVertical';
+    if (currentRotation === 90 || currentRotation === 270) {
+        rotateAxis = 'flipHorizontal';
+    }
+    this.rotateValuesList[this.core.index][rotateAxis] *= -1;
+
     this.applyStyles();
 };
 
