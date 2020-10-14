@@ -1,5 +1,5 @@
 /**!
- * lg-rotate.js | 1.2.0-beta.0 | October 5th 2020
+ * lg-rotate.js | 1.2.0 | October 14th 2020
  * http://sachinchoolur.github.io/lg-rotate.js
  * Copyright (c) 2016 Sachin N; 
  * @license GPLv3 
